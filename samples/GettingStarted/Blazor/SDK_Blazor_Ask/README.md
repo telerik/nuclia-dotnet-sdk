@@ -255,9 +255,9 @@ Consider exploring:
 ## Related Examples
 
 Before exploring this Blazor example, you may want to review the Basics examples:
-- [SDK_Step01_Connecting](../Basics/SDK_Step01_Connecting/) - Basic connectivity
-- [SDK_Step02_Connecting_With_DI](../Basics/SDK_Step02_Connecting_With_DI/) - Dependency injection
-- [SDK_Step03_Streaming_Responses](../Basics/SDK_Step03_Streaming_Responses/) - Streaming concepts
-- [SDK_Step04_Citations](../Basics/SDK_Step04_Citations/) - Working with citations
-- [SDK_Step05_StructuredOutput](../Basics/SDK_Step05_StructuredOutput/) - Type-safe structured responses
-- [SDK_Step06_Ingest](../Basics/SDK_Step06_Ingest/) - Content ingestion
+- [SDK_Step01_Connecting](../../Basics/SDK_Step01_Connecting/) - Basic connectivity
+- [SDK_Step02_Connecting_With_DI](../../Basics/SDK_Step02_Connecting_With_DI/) - Dependency injection
+- [SDK_Step03_Streaming_Responses](../../Basics/SDK_Step03_Streaming_Responses/) - Streaming concepts
+- [SDK_Step04_Citations](../../Basics/SDK_Step04_Citations/) - Working with citations
+- [SDK_Step05_StructuredOutput](../../Basics/SDK_Step05_StructuredOutput/) - Type-safe structured responses
+- [SDK_Step06_Ingest](../../Basics/SDK_Step06_Ingest/) - Content ingestion
