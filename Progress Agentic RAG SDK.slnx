@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/samples/" />
+  <Folder Name="/samples/Basics/">
+    <Project Path="samples/GettingStarted/Basics/SDK_Step01_Connecting/SDK_Step01_Connecting.csproj" />
+    <Project Path="samples/GettingStarted/Basics/SDK_Step02_Connecting_With_DI/SDK_Step02_Connecting_With_DI.csproj" />
+    <Project Path="samples/GettingStarted/Basics/SDK_Step03_Streaming_Responses/SDK_Step03_Streaming_Responses.csproj" />
+    <Project Path="samples/GettingStarted/Basics/SDK_Step04_Citations/SDK_Step04_Citations.csproj" />
+    <Project Path="samples/GettingStarted/Basics/SDK_Step05_StructuredOutput/SDK_Step05_StructuredOutput.csproj" />
+    <Project Path="samples/GettingStarted/Basics/SDK_Step06_Ingest/SDK_Step06_Ingest.csproj" />
+  </Folder>
+  <Folder Name="/samples/Blazor/">
+    <Project Path="samples/GettingStarted/Blazor/SDK_Blazor_Ask/SDK_Blazor_Ask.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Progress.Nuclia.Tests/Progress.Nuclia.Tests.csproj" />
+  </Folder>
+  <Project Path="src/Progress.Nuclia/Progress.Nuclia.csproj" />
+</Solution>

@@ -1,0 +1,29 @@
+name: Progress.Nuclia SDK CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Test
+        run: dotnet test --configuration Release
+        working-directory: tests/Progress.Nuclia.Tests
+
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build
+        working-directory: src/Progress.Nuclia

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>428804f1-2769-436e-a089-aebd3ceba329</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Package versions are centrally managed in samples/Directory.Packages.props -->
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+	<ProjectReference Include="..\..\..\..\src\Progress.Nuclia\Progress.Nuclia.csproj" />
+  </ItemGroup>
+
+</Project>

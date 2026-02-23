@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageId>Progress.Nuclia</PackageId>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <AssemblyTitle>Progress.Nuclia</AssemblyTitle>
+    <Title>Progress Nuclia SDK for .NET</Title>
+    <Authors>Progress</Authors>
+    <Company>Progress</Company>
+    <Description>Official .NET SDK for Progress.Nuclia - a powerful AI-powered search and retrieval platform. This library provides a comprehensive client for interacting with NucliaDB's REST API, including knowledge box management, resource operations, and advanced search capabilities with semantic search and conversational AI features.</Description>
+    <PackageTags>nuclia;nucliadb;search;ai;rag;semantic-search;vector-search;knowledge-base;progress</PackageTags>
+    <PackageProjectUrl>https://github.com/telerik/nuclia-dotnet-sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/telerik/nuclia-dotnet-sdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+	<ItemGroup>
+		<InternalsVisibleTo Include="Progress.Nuclia.Tests" />
+	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
+	  <PackageReference Include="System.Text.Json" Version="9.0.6" />
+  </ItemGroup>
+
+</Project>

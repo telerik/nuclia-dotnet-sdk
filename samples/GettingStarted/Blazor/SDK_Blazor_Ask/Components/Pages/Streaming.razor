@@ -1,0 +1,69 @@
+﻿@page "/streaming"
+@using Progress.Nuclia
+@using Progress.Nuclia.Model
+@using Progress.Nuclia.Model.Streaming
+
+@inject INucliaDbClient NucliaDbClient
+
+<PageTitle>Streaming</PageTitle>
+
+<div class="k-display-flex k-flex-col k-gap-6 k-p-6">
+    <h1 class="k-text-3xl k-font-bold">Ask and streaming response</h1>
+
+    <div class="k-display-flex k-flex-col k-gap-4 k-p-6 k-border k-border-solid k-rounded-md">
+        <div class="k-display-flex k-flex-col k-gap-2">
+            <label for="query" class="k-font-semibold">Query:</label>
+            <input id="query"
+                   type="text"
+                   class="k-input k-input-solid k-rounded-md k-w-full"
+                   @bind="query"
+                   placeholder="Enter your question..." />
+        </div>
+        <button type="button"
+                class="k-button k-button-solid k-button-primary k-rounded-md"
+                @onclick="HandleSubmit">
+            Submit
+        </button>
+    </div>
+
+    <div class="k-display-flex k-flex-col k-gap-4 k-p-6 k-border k-border-solid k-rounded-md">
+        <h3 class="k-text-xl k-font-semibold">Answer:</h3>
+        <p class="k-text-base">@answer</p>
+    </div>
+</div>
+
+@code {
+
+
+
+    string query = "Create a story about the data in this knowledge box?";
+    string answer = "Enter a query and click Submit...";
+
+    async Task HandleSubmit()
+    {
+        // clear the answer display
+        answer = "";
+
+        AskRequest askRequest = new AskRequest(query: query);
+
+        await foreach (var chunk in NucliaDbClient.Search.AskStreamAsync(askRequest))
+        {
+            // Because streaming responses can include multiple types of content (answer, retrievals, citations),
+            // we need to check the type of each chunk as it arrives and handle it accordingly.
+            // In this example, we will only write the answer text to the console as it streams in.
+            // Each answer chunk may contain a partial word or sub word,
+            // so we will write them sequentially to build the full answer text in real time.
+            if (chunk.Item is AnswerContent chunkAnswer)
+            {
+                answer += chunkAnswer.Text;
+
+                // This helps smooth the rendering as it streams
+                await Task.Delay(1);
+
+                // Since the update happens outside of the normal Blazor event flow, we need to manually trigger a UI refresh to display the new content as it arrives.
+                StateHasChanged();
+            }
+        }
+    }
+
+}

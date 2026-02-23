@@ -1,0 +1,23 @@
+{
+  "generatorName": "csharp",
+  "inputSpec": "nucliadb.yaml",
+  "outputDir": "./models",
+  "templateDir": "templates/csharp-generichost",
+  "additionalProperties": {
+    "packageName": "Progress.Nuclia",
+    "targetFramework": "net8.0",
+    "netCoreProjectFile": false,
+    "library": "generichost",
+    "nullableReferenceTypes": true,
+    "validatable": false,
+    "hideGenerationTimestamp": true
+  },
+  "globalProperties": {
+    "models": "",
+    "modelDocs": false,
+    "modelTests": false,
+    "apis": false,
+    "apiDocs": false,
+    "apiTests": false
+  }
+}

@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<nav class="k-display-flex k-flex-col k-gap-4 k-p-6 k-border k-border-solid k-rounded-md">
+    <ul class="k-list-none k-m-0 k-p-0 k-display-flex k-gap-4">
+        <li>
+            <NavLink href="/" class="k-button k-button-solid k-rounded-md" Match="NavLinkMatch.All" ActiveClass="k-button-primary">
+                Home
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="/streaming" class="k-button k-button-solid k-rounded-md" ActiveClass="k-button-primary">
+                Streaming
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="/structure" class="k-button k-button-solid k-rounded-md" ActiveClass="k-button-primary">
+                Structure
+            </NavLink>
+        </li>
+    </ul>
+</nav>
+
+@Body
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

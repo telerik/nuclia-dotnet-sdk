@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <ResourcePreloader />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["SDK_Blazor_Ask.styles.css"]" />
+
+
+    <!-- The themes provided by the Progress Design System Kit https://www.telerik.com/design-system/docs/ -->
+    <!-- Default theme -->
+    <link href="https://unpkg.com/@@progress/kendo-theme-default@@13.0.0/dist/default-ocean-blue-a11y.css" rel="stylesheet" />
+    <!-- CSS Utils -->
+    <link rel="stylesheet" href="https://unpkg.com/@@progress/kendo-theme-utils/dist/all.css" />
+
+    <ImportMap />
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer" />
+    <ReconnectModal  @rendermode="InteractiveServer" />
+    <script src="@Assets["_framework/blazor.web.js"]"></script>
+</body>
+
+</html>

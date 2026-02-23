@@ -1,0 +1,89 @@
+﻿@page "/structure"
+
+@using Progress.Nuclia
+@using Progress.Nuclia.Model
+@using System.ComponentModel
+
+@inject INucliaDbClient NucliaDbClient
+
+<PageTitle>Structured Output</PageTitle>
+
+<div class="k-display-flex k-flex-col k-gap-6 k-p-6">
+    <h1 class="k-text-3xl k-font-bold">Using Structured Outputs</h1>
+
+    <div class="k-display-flex k-flex-col k-gap-4 k-p-6 k-border k-border-solid k-rounded-md">
+        <div class="k-display-flex k-flex-col k-gap-2">
+            <h3 class="k-text-xl k-font-semibold">Ask About:</h3>
+            <ul class="k-list-none k-display-flex k-flex-col k-gap-2">
+                @foreach (var question in promptSuggestion.Questions)
+                {
+                    <button class="k-button k-button-solid k-button-primary k-rounded-md"
+                            @onclick="() => SelectQuestion(question.PromptText)">
+                        <div class="k-font-medium">@question.Title</div>
+                    </button>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="k-display-flex k-flex-col k-gap-4 k-p-6 k-border k-border-solid k-rounded-md">
+        <h3 class="k-text-xl k-font-semibold">Answer for @selectedQuery:</h3>
+        <p class="k-text-base">@answer</p>
+    </div>
+</div>
+
+@code {
+
+    public class PromptSuggestion
+    {
+        [Description("An array of suggested questions to ask about the knowledge box")]
+        public Question[] Questions { get; set; } = [];
+    }
+
+    public class Question
+    {
+        // The description will be used by Progress Agentic RAG to form the response.
+        // Think of the description as a hint to the agent about how to use the data in this property when generating a response.
+        // Its a small piece of prompt that is prepended to the value of the property when the agent is generating a response.
+        // For example, change the text below to "A FOUR word title for the question"
+        // and you will see that the agent will generate longer titles for the questions.
+        [Description("A three word title for the question")]
+        public string Title { get; set; } = "";
+        
+        [Description("The full question text that can be used as a search query")]
+        public string PromptText { get; set; } = "";
+    }
+
+    string prompt = "Create three question about the data in this knowledge box.";
+    string answer = "Enter a query and click Submit...";
+    string selectedQuery = "";
+
+    PromptSuggestion promptSuggestion = new PromptSuggestion();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await NucliaDbClient.Search.AskAsync<PromptSuggestion>(new AskRequest(prompt));
+        if(response.Data is not null)
+            promptSuggestion = response.Data;
+    }
+
+    async Task SelectQuestion(string query)
+    {
+        selectedQuery = query;
+        answer = "Loading...";
+
+        AskRequest askRequest = new AskRequest(query: query);
+
+        var askResponse = await NucliaDbClient.Search.AskAsync(askRequest);
+
+        if (askResponse.Success && askResponse?.Data is not null)
+        {
+            answer = askResponse.Data.Answer;
+        }
+        else
+        {
+            answer = "No answer received.";
+        }
+    }
+
+}

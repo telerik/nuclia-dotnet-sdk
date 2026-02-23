@@ -1,0 +1,13 @@
+{
+  "excludedModels": [
+    "Error.cs",
+    "SearchFilters.cs",
+    "CatalogFilters.cs",
+    "KeywordFilters.cs",
+    "NotOperand.cs",
+    "NotOperand2.cs",
+    "NotOperand5.cs",
+    "ResourceFilters.cs",
+    "ValidationErrorLocInner.cs"
+  ]
+}
