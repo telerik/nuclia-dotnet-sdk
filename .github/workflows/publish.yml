@@ -1,0 +1,62 @@
+name: Publish NuGet Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_suffix:
+        description: "Version suffix (e.g. preview.1, alpha.2, beta.3, release)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    name: Build, Test & Publish
+    runs-on: ubuntu-24.04
+    environment: upload
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Build
+        run: dotnet build src/Progress.Nuclia/Progress.Nuclia.csproj --configuration Release --version-suffix ${{ inputs.version_suffix }}
+
+      - name: Test
+        run: dotnet test tests/Progress.Nuclia.Tests/Progress.Nuclia.Tests.csproj --configuration Release --no-build
+
+      - name: Pack
+        run: >
+          dotnet pack src/Progress.Nuclia/Progress.Nuclia.csproj
+          --configuration Release
+          --no-build
+          --output ./artifacts
+          --version-suffix ${{ inputs.version_suffix }}
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER_NAME }}
+
+      - name: Push to NuGet.org
+        run: >
+          dotnet nuget push ./artifacts/Progress.Nuclia.*.nupkg
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{steps.login.outputs.NUGET_API_KEY}}
+          --skip-duplicate
+
+      - name: Tag release
+        run: |
+          VERSION_PREFIX=$(dotnet msbuild src/Progress.Nuclia/Progress.Nuclia.csproj -getProperty:VersionPrefix)
+          TAG="v${VERSION_PREFIX}-${{ inputs.version_suffix }}"
+          git tag "$TAG"
+          git push origin "$TAG"

@@ -17,11 +17,13 @@
     <RepositoryUrl>https://github.com/telerik/nuclia-dotnet-sdk</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIconUrl>http://www.telerik.com/sfimages/default-source/logos/progress-64x64.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
   
 	<ItemGroup>
