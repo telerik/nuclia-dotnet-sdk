@@ -18,12 +18,13 @@
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIconUrl>http://www.telerik.com/sfimages/default-source/logos/progress-64x64.png</PackageIconUrl>
+    <PackageIcon>progress-64x64.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="" />
     <None Include="../../LICENSE" Pack="true" PackagePath="" />
+    <None Include="images\progress-64x64.png" Pack="true" PackagePath="" />
   </ItemGroup>
   
 	<ItemGroup>

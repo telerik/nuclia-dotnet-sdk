@@ -4,14 +4,7 @@ A comprehensive .NET SDK for Progress Agentic RAG's NucliaDb, providing RAG (Ret
 
 ## 📚 Documentation
 
-- **[Full SDK Documentation](docs/index.md)** - Complete API reference, configuration options, and advanced features
-- **[Getting Started Examples](samples/GettingStarted/Basics/)** - Step-by-step tutorials covering:
-  - Basic connectivity
-  - Dependency injection integration
-  - Streaming responses
-  - Citations and source attribution
-  - Structured outputs
-- **[Blazor Sample App](samples/GettingStarted/Blazor/SDK_Blazor_Ask/)** - Complete Blazor Web App demonstrating SDK integration
+- **[Full SDK Documentation](https://docs.rag.progress.cloud/docs/develop/dotnet-sdk/)** - Complete API reference, configuration options, and advanced features
 
 ## Installation
 
@@ -39,10 +32,17 @@ using Progress.Nuclia.Extensions;
 // Create configuration
 var config = new NucliaDbConfig(
     ZoneId: "aws-us-east-2-1",
-    KnowledgeBoxId: "your-knowledge-box-id", 
+    KnowledgeBoxId: "your-knowledge-box-id",
     ApiKey: "your-api-key"
 );
 
-// Register with logging
-builder.Services.AddNucliaDb(config).UseLogging();
+// Create a client instance
+using var nucliaDbClient = new NucliaDbClient(config);
+
+// Or Register with DI and inject as nucliaDbClient
+// builder.Services.AddNucliaDb(config).UseLogging();
+
+// ask a question
+var response = await nucliaDbClient.Search.AskAsync(new AskRequest("What is Nuclia?"));
+Console.WriteLine(response.Data.Answer);
 ```
