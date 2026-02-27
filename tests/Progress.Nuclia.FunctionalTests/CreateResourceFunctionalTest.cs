@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Progress.Nuclia;
 using Progress.Nuclia.Model;
@@ -8,10 +9,11 @@ using Xunit;
 /// Functional test to validate that CreateResourceAsync can create a resource with a PDF file upload.
 /// This test ensures the Nuclia SDK can upload a file and receive a valid resource UUID in response.
 /// </summary>
-public class CreateResourceFunctionalTest
+public class CreateResourceFunctionalTest : IAsyncLifetime
 {
     private readonly NucliaDbClient _client;
     private readonly string _testPrefix;
+    private readonly List<string> _createdResourceIds = new();
 
     public CreateResourceFunctionalTest()
     {
@@ -23,6 +25,29 @@ public class CreateResourceFunctionalTest
         var config = new NucliaDbConfig(zoneId, kbId, apiKey);
         _client = new NucliaDbClient(config);
         _testPrefix = "test-" + Guid.NewGuid().ToString();
+    }
+
+    /// <summary>
+    /// Initialize async - no setup required.
+    /// </summary>
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    /// <summary>
+    /// Clean up all created resources after tests complete.
+    /// </summary>
+    public async Task DisposeAsync()
+    {
+        foreach (var resourceId in _createdResourceIds)
+        {
+            try
+            {
+                await _client.Resources.DeleteResourceByIdAsync(resourceId);
+            }
+            catch
+            {
+                // Ignore cleanup errors to prevent test failures
+            }
+        }
     }
 
     /// <summary>
@@ -59,5 +84,8 @@ public class CreateResourceFunctionalTest
         Assert.True(response.Success, $"Resource creation failed: {response.Error}");
         Assert.NotNull(response.Data);
         Assert.False(string.IsNullOrEmpty(response.Data.Uuid), "Returned UUID is null or empty");
+        
+        // Track for cleanup
+        _createdResourceIds.Add(response.Data.Uuid);
     }
 }
