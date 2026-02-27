@@ -1,0 +1,70 @@
+Progress Nuclia SDK LICENSE AGREEMENT 
+
+Last updated: 24 February 2026 
+
+ 
+IMPORTANT - READ CAREFULLY. 
+
+This Progress Nuclia SDK License Agreement ("Agreement") is a legal agreement between you (either an individual or a legal entity) and Progress Software Corporation ("Progress", "we", "us", or "our") governing your use of the Progress Nuclia Software Development Kit ("SDK"). YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT BY DOWNLOADING, INSTALLING (IF APPLICABLE), ACCESSING, COPYING OR OTHERWISE USING THE SDK, DOCUMENTATION AND/OR PROGRAM MATERIALS. IF YOU DO NOT AGREE, DO NOT DOWNLOAD, INSTALL (IF APPLICABLE), ACCESS, COPY OR USE THE SDK AND/OR PROGRAM MATERIALS. 
+
+1. DEFINITIONS 
+
+"SDK" means the software libraries, APIs, tools, sample code, and related documentation made available by Progress for the purpose of enabling applications to interoperate with Progress products. 
+
+"Documentation" means written or electronic materials provided by Progress describing the SDK. 
+
+“Program Materials” means all information and materials, including Documentation, training materials, technical information and presentation materials related to the SDK. 
+
+2. LICENSE GRANT 
+
+Subject to your compliance with this Agreement, Progress grants you a non-exclusive, worldwide, royalty-free, and perpetual license to use, reproduce, and modify the SDK solely to develop, test, and operate software applications that interoperate with Progress products. 
+
+You may permit your employees and contractors to exercise the rights granted to you under this Agreement, provided that you remain responsible for their compliance with this Agreement. 
+
+Any other products you purchase or license from Progress are subject to the applicable End User License Agreements (EULA) available at https://www.telerik.com/purchase/license-agreements.  
+
+3. RESTRICTIONS 
+
+You may not: 
+(a) sell, rent, lease, sublicense, or distribute the SDK on a standalone basis; 
+(b) remove or alter any copyright, trademark, or proprietary notices included in the SDK; 
+(c) reverse engineer, decompile, or disassemble any binary components of the SDK except to the extent expressly permitted by applicable law. 
+
+4. THIRD-PARTY COMPONENTS 
+
+The SDK may include third-party software components subject to separate license terms. Such terms will be provided with the SDK, and you agree to comply with them. 
+
+5. OWNERSHIP 
+
+The SDK, the Documentation and/or any Program Materials are owned by Progress or its licensors and are protected by intellectual property laws. This Agreement does not transfer any ownership rights to you. 
+
+6. TERM AND TERMINATION 
+
+This Agreement is effective until terminated. Progress may terminate this Agreement if you materially breach its terms. Upon termination, you must cease all use of the SDK and destroy all copies of the SDK, the Documentation and/or of the Program Materials in your possession or control. 
+
+7. MAINTENANCE AND SUPPORT SERVICES 
+
+We may, at our sole discretion, decide whether to offer any maintenance and support for the SDK during the evaluation period, and to include any conditions or limits on such maintenance and support.  
+
+8. WARRANTY EXCLUSION  
+
+THE SDK AND ITS FEATURES ARE LICENSED “AS IS”. YOU BEAR THE RISK OF USING THE SDK. PROGRESS GIVES NO EXPRESS WARRANTIES, GUARANTEES OR CONDITIONS. YOU MAY HAVE ADDITIONAL RIGHTS UNDER YOUR LOCAL LAWS WHICH THIS AGREEMENT CANNOT CHANGE. TO THE EXTENT PERMITTED UNDER YOUR LOCAL LAWS, PROGRESS EXCLUDES THE IMPLIED WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. 
+
+9. LIABILITY EXCLUSION 
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL PROGRESS BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THIS AGREEMENT WITH RESPECT TO THE SDK AND/OR ITS FEATURES, INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER COMMERCIAL DAMAGES OR LOSSES, EVEN IF ADVISED OF THE POSSIBILITY THEREOF, AND REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED. IN ANY CASE, PROGRESS’S ENTIRE LIABILITY WITH RESPECT THE SDK AND/OR ITS FEATURES UNDER ANY PROVISION OF THIS AGREEMENT SHALL NOT EXCEED $5, NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS EXCLUSION AND LIMITATION MAY NOT BE APPLICABLE. 
+
+10. EXPORT CONTROL 
+
+You agree to comply with all applicable export control and economic sanctions laws and regulations relating to your use of the SDK. 
+
+11. GENERAL 
+
+This Agreement constitutes the entire agreement between you and Progress relating to the SDK and supersedes any prior agreements or understandings. This Agreement is governed by the laws of the Commonwealth of Massachusetts, USA, excluding its conflict of laws principles. 
+
+You acknowledge that the SDK, Documentation and/or Program Materials provided to you, or which you download from relevant sources, are valuable proprietary and trade secret information of Progress or its licensors.  If you are an entity, unless otherwise expressly permitted hereunder, you agree to limit use and disclosure of the SDK, Documentation and/or Program Materials to your employees and authorized contractors who are permitted to use such items pursuant to the terms and conditions of this Agreement and who agree to be bound by the terms and conditions contained herein. Further, except as otherwise expressly permitted herein, you agree: (i) not to provide or disclose any of the SDK, Documentation and/or Program Materials, or any portion of the foregoing, to another individual or entity; and (ii) to take all reasonable precautions to maintain the confidentiality of said items. 
+
+You agree not to disclose any benchmark results relating to your use of any of the Software without the prior written consent of PSC. 
+
+You may have access from time to time during your license term to certain information about Progress’ future product development plans and/or business development strategies. Such information shall be considered confidential information of Progress and your use of, or access to, such information shall be subject to the same nondisclosure terms and conditions specified in this Section applicable for the SDK, Documentation and/or Program Materials. Further, you acknowledge that Progress reserves the right, in its sole discretion, to modify or abandon, without notice to you, any such future product plans and/or business development strategies. 
+ 
