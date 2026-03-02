@@ -1,0 +1,31 @@
+name: Sync docs to S3
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "docs/**"
+      - ".github/workflows/docs-sync.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ secrets.DOCS_SYNC_AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Sync docs folder to S3
+        run: aws s3 sync ./docs s3://nuclia-docs-aws-global-stage-1/dotnet-sdk
