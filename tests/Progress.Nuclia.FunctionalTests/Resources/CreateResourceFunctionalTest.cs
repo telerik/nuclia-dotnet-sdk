@@ -1,66 +1,28 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Progress.Nuclia;
 using Progress.Nuclia.Model;
 using Xunit;
+
+namespace Progress.Nuclia.FunctionalTests.Resources;
 
 /// <summary>
 /// Functional test to validate that CreateResourceAsync can create a resource with a PDF file upload.
 /// This test ensures the Nuclia SDK can upload a file and receive a valid resource UUID in response.
 /// </summary>
-public class CreateResourceFunctionalTest : IAsyncLifetime
+public class CreateResourceFunctionalTest : WriteOperationFunctionalTestBase
 {
-    private readonly NucliaDbClient _client;
-    private readonly string _testPrefix;
-    private readonly List<string> _createdResourceIds = new();
-
-    public CreateResourceFunctionalTest()
-    {
-        var zoneId = Environment.GetEnvironmentVariable("NUCLIA_ZONE_ID");
-        var kbId = Environment.GetEnvironmentVariable("NUCLIA_KB_ID");
-        var apiKey = Environment.GetEnvironmentVariable("NUCLIA_API_KEY");
-        if (string.IsNullOrEmpty(zoneId) || string.IsNullOrEmpty(kbId) || string.IsNullOrEmpty(apiKey))
-            throw new InvalidOperationException("Missing Nuclia API credentials. Set NUCLIA_ZONE_ID, NUCLIA_KB_ID, NUCLIA_API_KEY.");
-        var config = new NucliaDbConfig(zoneId, kbId, apiKey);
-        _client = new NucliaDbClient(config);
-        _testPrefix = "test-" + Guid.NewGuid().ToString();
-    }
-
-    /// <summary>
-    /// Initialize async - no setup required.
-    /// </summary>
-    public Task InitializeAsync() => Task.CompletedTask;
-
-    /// <summary>
-    /// Clean up all created resources after tests complete.
-    /// </summary>
-    public async Task DisposeAsync()
-    {
-        foreach (var resourceId in _createdResourceIds)
-        {
-            try
-            {
-                await _client.Resources.DeleteResourceByIdAsync(resourceId);
-            }
-            catch
-            {
-                // Ignore cleanup errors to prevent test failures
-            }
-        }
-    }
-
     /// <summary>
     /// Validates that CreateResourceAsync can create a resource with a PDF file upload.
     /// The test passes if a valid UUID is returned and no exception is thrown.
     /// </summary>
     [Fact(DisplayName = "Can create resource with PDF file using CreateResourceAsync")]
     [Trait("Category", "Functional")]
+    [Trait("Service", "ResourceService")]
     public async Task CanCreateResourceWithPdfFile()
     {
         var payload = new CreateResourcePayload
         {
-            Title = $"{_testPrefix}-pdf-upload",
+            Title = $"{TestPrefix}-pdf-upload",
             Summary = "Test resource with PDF upload",
             Icon = "application/pdf"
         };
@@ -80,12 +42,12 @@ public class CreateResourceFunctionalTest : IAsyncLifetime
         {
             { "pdf", fileField }
         };
-        var response = await _client.Resources.CreateResourceAsync(payload);
+        var response = await Client.Resources.CreateResourceAsync(payload);
         Assert.True(response.Success, $"Resource creation failed: {response.Error}");
         Assert.NotNull(response.Data);
         Assert.False(string.IsNullOrEmpty(response.Data.Uuid), "Returned UUID is null or empty");
         
         // Track for cleanup
-        _createdResourceIds.Add(response.Data.Uuid);
+        CreatedResourceIds.Add(response.Data.Uuid);
     }
 }
