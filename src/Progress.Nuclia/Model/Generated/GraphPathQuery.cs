@@ -319,6 +319,49 @@ namespace Progress.Nuclia.Model
         /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GraphPathQuery graphPathQuery, JsonSerializerOptions jsonSerializerOptions)
         {
+            // GraphPathQuery is a oneOf type - serialize only the non-null property
+            if (graphPathQuery.AndGraphPathQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.AndGraphPathQuery, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.OrGraphPathQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.OrGraphPathQuery, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.NotGraphPathQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.NotGraphPathQuery, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.NucliadbModelsGraphRequestsGraphPath != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.NucliadbModelsGraphRequestsGraphPath, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.SourceNode != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.SourceNode, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.DestinationNode != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.DestinationNode, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.AnyNode != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.AnyNode, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.NucliadbModelsGraphRequestsRelation != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.NucliadbModelsGraphRequestsRelation, jsonSerializerOptions);
+            }
+            else if (graphPathQuery.NucliadbModelsGraphRequestsGenerated != null)
+            {
+                JsonSerializer.Serialize(writer, graphPathQuery.NucliadbModelsGraphRequestsGenerated, jsonSerializerOptions);
+            }
+            else
+            {
+                // Empty object for empty query
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+            }
         }
     }
 }

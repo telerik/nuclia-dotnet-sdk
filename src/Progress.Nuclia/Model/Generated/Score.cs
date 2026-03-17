@@ -27,6 +27,7 @@ namespace Progress.Nuclia.Model
     /// <summary>
     /// Score
     /// </summary>
+    [JsonConverter(typeof(ScoreJsonConverter))]
     public partial class Score
     {
         /// <summary>
@@ -124,6 +125,21 @@ namespace Progress.Nuclia.Model
         public override Score Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
+
+            // Handle simple numeric values (decimal or int)
+            if (utf8JsonReader.TokenType == JsonTokenType.Number)
+            {
+                // Try to read as decimal first (more precise)
+                if (utf8JsonReader.TryGetDecimal(out decimal decimalValue))
+                {
+                    return new Score(decimalValue);
+                }
+                // Fall back to int
+                else if (utf8JsonReader.TryGetInt32(out int intValue))
+                {
+                    return new Score(intValue);
+                }
+            }
 
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
                 throw new JsonException();

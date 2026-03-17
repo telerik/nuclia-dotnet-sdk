@@ -27,6 +27,7 @@ namespace Progress.Nuclia.Model
     /// <summary>
     /// Minimum score to filter search results. Results with a lower score will be ignored. Accepts either a float or a dictionary with the minimum scores for the bm25 and vector indexes. If a float is provided, it is interpreted as the minimum score for vector index search.
     /// </summary>
+    [JsonConverter(typeof(MinimumScoreJsonConverter))]
     public partial class MinimumScore
     {
         /// <summary>

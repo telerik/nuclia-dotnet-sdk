@@ -231,6 +231,33 @@ namespace Progress.Nuclia.Model
         /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GraphRelationsQuery graphRelationsQuery, JsonSerializerOptions jsonSerializerOptions)
         {
+            // GraphRelationsQuery is a oneOf type - serialize only the non-null property
+            if (graphRelationsQuery.AndGraphRelationsQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphRelationsQuery.AndGraphRelationsQuery, jsonSerializerOptions);
+            }
+            else if (graphRelationsQuery.OrGraphRelationsQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphRelationsQuery.OrGraphRelationsQuery, jsonSerializerOptions);
+            }
+            else if (graphRelationsQuery.NotGraphRelationsQuery != null)
+            {
+                JsonSerializer.Serialize(writer, graphRelationsQuery.NotGraphRelationsQuery, jsonSerializerOptions);
+            }
+            else if (graphRelationsQuery.NucliadbModelsGraphRequestsRelation != null)
+            {
+                JsonSerializer.Serialize(writer, graphRelationsQuery.NucliadbModelsGraphRequestsRelation, jsonSerializerOptions);
+            }
+            else if (graphRelationsQuery.NucliadbModelsGraphRequestsGenerated != null)
+            {
+                JsonSerializer.Serialize(writer, graphRelationsQuery.NucliadbModelsGraphRequestsGenerated, jsonSerializerOptions);
+            }
+            else
+            {
+                // Empty object for empty query
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+            }
         }
     }
 }
