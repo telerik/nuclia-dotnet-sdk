@@ -220,24 +220,11 @@ public interface IResourceFieldsService
     /// <param name="filePassword">Password for the file if protected</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Success status</returns>
+    /// <remarks>
+    /// Note: The Nuclia API only supports reprocessing by resource ID, not by slug.
+    /// </remarks>
     Task<ApiResponse<bool>> ReprocessFileFieldByIdAsync(
         string resourceId,
-        string fieldId,
-        bool? resetTitle = null,
-        string? filePassword = null,
-        CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Reprocess a file field by resource slug
-    /// </summary>
-    /// <param name="resourceSlug">Resource slug</param>
-    /// <param name="fieldId">Field ID</param>
-    /// <param name="resetTitle">Whether to reset the title</param>
-    /// <param name="filePassword">Password for the file if protected</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>Success status</returns>
-    Task<ApiResponse<bool>> ReprocessFileFieldBySlugAsync(
-        string resourceSlug,
         string fieldId,
         bool? resetTitle = null,
         string? filePassword = null,

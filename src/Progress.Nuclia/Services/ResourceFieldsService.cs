@@ -382,18 +382,6 @@ internal class ResourceFieldsService : BaseService, IResourceFieldsService
         return ReprocessFileFieldAsync(url, resetTitle, filePassword, cancellationToken);
     }
 
-    /// <inheritdoc />
-    public Task<ApiResponse<bool>> ReprocessFileFieldBySlugAsync(
-        string resourceSlug,
-        string fieldId,
-        bool? resetTitle = null,
-        string? filePassword = null,
-        CancellationToken cancellationToken = default)
-    {
-        var url = $"{_baseUrl}/kb/{_knowledgeBaseId}/slug/{resourceSlug}/file/{fieldId}/reprocess";
-        return ReprocessFileFieldAsync(url, resetTitle, filePassword, cancellationToken);
-    }
-
     private async Task<ApiResponse<bool>> ReprocessFileFieldAsync(
         string url,
         bool? resetTitle,
