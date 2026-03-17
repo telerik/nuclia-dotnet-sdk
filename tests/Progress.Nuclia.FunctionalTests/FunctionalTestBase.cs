@@ -14,6 +14,11 @@ public abstract class FunctionalTestBase
     protected readonly NucliaDbClient Client;
 
     /// <summary>
+    /// The Knowledge Box ID used for testing.
+    /// </summary>
+    protected readonly string KnowledgeBoxId;
+
+    /// <summary>
     /// Initializes the test client using environment variables for credentials.
     /// Throws if required credentials are missing.
     /// </summary>
@@ -30,6 +35,7 @@ public abstract class FunctionalTestBase
                 "Missing Nuclia API credentials. Set NUCLIA_ZONE_ID, NUCLIA_KB_ID, NUCLIA_API_KEY.");
         }
 
+        KnowledgeBoxId = kbId;
         var config = new NucliaDbConfig(zoneId, kbId, apiKey);
         Client = new NucliaDbClient(config);
     }
