@@ -168,15 +168,27 @@ internal class KnowledgeBoxService : BaseService, IKnowledgeBoxService
     public async Task<ApiResponse<ResourceFileUploaded>> UploadKnowledgeBoxFileAsync(string knowledgeBoxId, Stream fileStream, string fileName, string? splitStrategy = null, CancellationToken cancellationToken = default)
     {
         var url = $"{_baseUrl}/kb/{knowledgeBoxId}/upload";
-        using var content = new MultipartFormDataContent();
-        var fileContent = new StreamContent(fileStream);
-        content.Add(fileContent, "file", fileName);
+
+        // Read the stream into a byte array
+        using var memoryStream = new MemoryStream();
+        await fileStream.CopyToAsync(memoryStream, cancellationToken);
+        var fileContent = memoryStream.ToArray();
+
+        // Create the content with the file bytes
+        var content = new ByteArrayContent(fileContent);
+        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+        // Create the request with custom headers
+        var request = new HttpRequestMessage(HttpMethod.Post, url) { Content = content };
+        request.Headers.Add("x-filename", fileName);
+
         if (!string.IsNullOrWhiteSpace(splitStrategy))
         {
-            content.Headers.Add("x-split-strategy", splitStrategy);
+            request.Headers.Add("x-split-strategy", splitStrategy);
         }
+
         return await ExecuteHttpRequestAsync<ResourceFileUploaded>(
-            async () => await _httpClient.PostAsync(url, content, cancellationToken),
+            async () => await _httpClient.SendAsync(request, cancellationToken),
             nameof(UploadKnowledgeBoxFileAsync),
             cancellationToken,
             $"with knowledgeBoxId: {knowledgeBoxId}, fileName: {fileName}, splitStrategy: {splitStrategy}");
