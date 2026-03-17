@@ -12,6 +12,7 @@
     <Project Path="samples/GettingStarted/Blazor/SDK_Blazor_Ask/SDK_Blazor_Ask.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Progress.Nuclia.FunctionalTests/Progress.Nuclia.FunctionalTests.csproj" />
     <Project Path="tests/Progress.Nuclia.Tests/Progress.Nuclia.Tests.csproj" />
   </Folder>
   <Project Path="src/Progress.Nuclia/Progress.Nuclia.csproj" />
