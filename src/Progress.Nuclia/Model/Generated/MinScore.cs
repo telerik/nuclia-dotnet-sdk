@@ -27,6 +27,7 @@ namespace Progress.Nuclia.Model
     /// <summary>
     /// MinScore
     /// </summary>
+    [JsonConverter(typeof(MinScoreJsonConverter))]
     public partial class MinScore
     {
         /// <summary>

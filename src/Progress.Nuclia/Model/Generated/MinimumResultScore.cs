@@ -27,6 +27,7 @@ namespace Progress.Nuclia.Model
     /// <summary>
     /// The minimum scores that have been used for the search operation.
     /// </summary>
+    [JsonConverter(typeof(MinimumResultScoreJsonConverter))]
     public partial class MinimumResultScore
     {
         /// <summary>

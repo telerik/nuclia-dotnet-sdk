@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Progress.Nuclia.Model;
@@ -56,9 +57,13 @@ public class ApiResponse<T>
     /// <param name="validationError">Validation error detail structure.</param>
     public static ApiResponse<T> CreateValidationError(HTTPValidationError validationError)
     {
+        // Extract the first validation error message as a summary
+        var errorMessage = validationError?.Detail?.FirstOrDefault()?.Msg ?? "Validation failed";
+
         return new ApiResponse<T>
         {
             Success = false,
+            Error = errorMessage,
             ValidationError = validationError
         };
     }
