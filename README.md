@@ -5,6 +5,13 @@ A comprehensive .NET SDK for Progress Agentic RAG's NucliaDb, providing RAG (Ret
 ## 📚 Documentation
 
 - **[Full SDK Documentation](https://docs.rag.progress.cloud/docs/develop/dotnet-sdk/)** - Complete API reference, configuration options, and advanced features
+- **[Getting Started Examples](https://github.com/telerik/nuclia-dotnet-sdk/tree/main/samples/GettingStarted/Basics)** - Step-by-step tutorials covering:
+    - Basic connectivity
+    - Dependency injection integration
+    - Streaming responses
+    - Citations and source attribution
+    - Structured outputs
+- **[Blazor Sample App](https://github.com/telerik/nuclia-dotnet-sdk/tree/main/samples/GettingStarted/Blazor/SDK_Blazor_Ask)** - Complete Blazor Web App demonstrating SDK integration
 
 ## Installation
 
